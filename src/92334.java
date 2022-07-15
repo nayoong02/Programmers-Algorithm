@@ -22,7 +22,7 @@ class Solution {
 
         //k번 이상 신고 당한 사람을 신고한 사람 메일 발송
         for (int i = 0; i < id_list.length; i++){
-           if(map.get(id_list[i]).size() >= k) { //HashSet의 크기가 k 이상일때 Set에 있는 사람들 값에게 메일 발송
+           if(map.get(id_list[i]).size() >= k) { //HashSet의 크기가 k 이상일때 Set에 있는 사람들에게 메일 발송
                for(String name : map.get(id_list[i])){
                    answer[id_Map.get(name)]++;
                }
