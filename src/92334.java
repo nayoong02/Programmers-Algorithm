@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.HashSet;
 
-class Solution {
+class Sol_92334 {
     public static int[] solution(String[] id_list, String[] report, int k) {
         HashMap<String, Integer> id_Map = new HashMap<>(); //id 이름, 인덱스 순서
         HashMap<String, HashSet<String>> map = new HashMap<>(); //id, id를 신고한 사람 set
