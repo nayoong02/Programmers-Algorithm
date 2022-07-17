@@ -1,4 +1,4 @@
-class Solution {
+class Sol_77484 {
     public static int[] solution(int[] lottos, int[] win_nums) {
         int low_lotto = 0; //최소한의 겹치는 수
         int add = 0; //0 개수만큼 겹치는 수 증가되게
