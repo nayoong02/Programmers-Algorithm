@@ -1,3 +1,5 @@
+package Lv1;
+
 class Sol_70128 {
     public static int solution(int[] a, int[] b) {
         int answer = 0;

@@ -1,3 +1,5 @@
+package Lv1;
+
 class Sol_81301 {
     public static int solution(String s) {
         String[] num = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
