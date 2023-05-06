@@ -1,3 +1,5 @@
+package Lv1;
+
 import java.util.*;
 
 class Sol_42576 {
