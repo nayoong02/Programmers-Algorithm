@@ -4,67 +4,39 @@ import java.util.*;
 
 class Sol_17686 {
     public static String[] solution(String[] files) {
-        String[] answer = new String[files.length];
 
-        ArrayList<File> list = new ArrayList<>();
-        for (int i = 0; i < files.length; i++) { // 리스트에 files 배열 할당 + File 객체, 들어온 순서 전달
-            list.add(new File(files[i], i));
-        }
+        Arrays.sort(files, (s1, s2) -> {
+            String head1 = s1.split("[0-9]")[0];
+            String head2 = s2.split("[0-9]")[0];
 
-        Collections.sort(list);
+            s1 = s1.replace(head1, "");
+            s2 = s2.replace(head2, "");
 
-        for (int i = 0; i < list.size(); i++) { // head, number, tail 연결해서 answer 배열에 저장
-            answer[i] = list.get(i).head + list.get(i).num + list.get(i).tail;
-        }
+            head1 = head1.toLowerCase();
+            head2 = head2.toLowerCase();
 
-        return answer;
-    }
-
-    static class File implements Comparable<File> {
-        int order; // 들어온 순서
-        String head;
-        String num;
-        String tail;
-
-        File(String str, int order) {
-            this.order = order;
-
-            // head
-            int idx = 0;
-            while (true) {
-                if (str.charAt(idx) >= '0' && str.charAt(idx) <= '9') { // 숫자 만나기 전까지 인덱스 증가
-                    break;
-                } else idx++;
-            }
-            this.head = str.substring(0, idx);
-
-            // num
-            String tmp = "";
-            while (true) {
-                if (idx < str.length() && Character.isDigit(str.charAt(idx))) {
-                    tmp += str.charAt(idx);
-                    idx++;
-                } else break;
-            }
-            this.num = tmp;
-
-            // tail
-            this.tail = str.substring(idx);
-        }
-
-        @Override
-        public int compareTo(File o) {
-            String h1 = this.head.toLowerCase();
-            String h2 = o.head.toLowerCase();
-
-            if (h1.equals(h2)) { // head가 같으면
-                if (this.num == o.num) { // num이 같으면
-                    return this.order - o.order;
+            if (head1.compareTo(head2) == 0) { // HEAD가 같으면 NUMBER로 정렬
+                String num1 = "";
+                for (char c : s1.toCharArray()) {
+                    if (c >= '0' && c <= '9') {
+                        num1 += c;
+                    } else break;
                 }
-                return Integer.parseInt(this.num) - Integer.parseInt(o.num);
+
+                String num2 = "";
+                for (char c : s2.toCharArray()) {
+                    if (c >= '0' && c <= '9') {
+                        num2 += c;
+                    } else break;
+                }
+
+                return Integer.parseInt(num1) - (Integer.parseInt(num2));
             }
-            return h1.compareTo(h2);
-        }
+            else { // HEAD가 달라서 정렬 가능하면
+                return head1.compareTo(head2);
+            }
+        });
+        return files;
     }
 
     public static void main (String[] args) {
